@@ -1,3 +1,4 @@
+
 name: Build .NET Backend
 
 on:
@@ -15,32 +16,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
-
-      - name: Print .NET SDK version
-        run: dotnet --info
+          dotnet-version: '9.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore backend/MessageThreadAPI/MessageThreadAPI.csproj
+        working-directory: backend/MessageThreadAPI
+        run: dotnet restore
 
-      - name: Clean build
-        run: dotnet clean backend/MessageThreadAPI/MessageThreadAPI.csproj
+      - name: Build backend
+        working-directory: backend/MessageThreadAPI
+        run: dotnet build --no-restore
 
-      - name: Build backend (verbose)
-        run: dotnet build backend/MessageThreadAPI/MessageThreadAPI.csproj --no-restore --verbosity diag
-
-      - name: List .NET projects and solutions
-        run: |
-          echo "Found projects:"
-          find . -name "*.csproj"
-          echo "Found solutions:"
-          find . -name "*.sln"
-
-      - name: Skip tests for now
-        run: echo "Skipping tests - none implemented yet"
+      - name: Run tests (om du har)
+        working-directory: backend/MessageThreadAPI
+        run: echo "No tests yet" # ersätt med t.ex. 'dotnet test' om du lägger till tester
