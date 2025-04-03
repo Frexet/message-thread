@@ -25,14 +25,20 @@ jobs:
         run: dotnet --info
 
       - name: Restore dependencies
-        working-directory: backend/MessageThreadAPI
-        run: dotnet restore
+        run: dotnet restore backend/MessageThreadAPI/MessageThreadAPI.csproj
 
       - name: Clean build
         run: dotnet clean backend/MessageThreadAPI/MessageThreadAPI.csproj
 
       - name: Build backend (verbose)
         run: dotnet build backend/MessageThreadAPI/MessageThreadAPI.csproj --no-restore --verbosity diag
+
+      - name: List .NET projects and solutions
+        run: |
+          echo "Found projects:"
+          find . -name "*.csproj"
+          echo "Found solutions:"
+          find . -name "*.sln"
 
       - name: Skip tests for now
         run: echo "Skipping tests - none implemented yet"
