@@ -29,8 +29,7 @@ jobs:
         run: dotnet restore
 
       - name: Build backend
-        working-directory: backend/MessageThreadAPI
-        run: dotnet build --no-restore
+        run: dotnet build backend/MessageThreadAPI/MessageThreadAPI.csproj --no-restore
 
       - name: Skip tests for now
         run: echo "Skipping tests - none implemented yet"
