@@ -21,6 +21,13 @@ jobs:
       - name: Debug Git status
         run: git status
 
+      - name: Check for Git dependencies
+        run: |
+          echo "Searching for git dependencies..."
+          grep -R "git+" frontend/package.json || true
+          echo "Checking node_modules for git usage..."
+          find frontend/node_modules -type f -exec grep -H "git@" {} \; || true
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
