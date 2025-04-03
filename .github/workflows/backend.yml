@@ -28,8 +28,11 @@ jobs:
         working-directory: backend/MessageThreadAPI
         run: dotnet restore
 
-      - name: Build backend
-        run: dotnet build backend/MessageThreadAPI/MessageThreadAPI.csproj --no-restore
+      - name: Clean build
+        run: dotnet clean backend/MessageThreadAPI/MessageThreadAPI.csproj
+
+      - name: Build backend (verbose)
+        run: dotnet build backend/MessageThreadAPI/MessageThreadAPI.csproj --no-restore --verbosity diag
 
       - name: Skip tests for now
         run: echo "Skipping tests - none implemented yet"
