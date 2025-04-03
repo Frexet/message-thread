@@ -29,6 +29,5 @@ jobs:
         working-directory: backend/MessageThreadAPI
         run: dotnet build --no-restore
 
-      - name: Run tests (om du har)
-        working-directory: backend/MessageThreadAPI
-        run: echo "No tests yet" # ersätt med t.ex. 'dotnet test' om du lägger till tester
+      - name: Skip tests for now
+        run: echo "Skipping tests - none implemented yet"
